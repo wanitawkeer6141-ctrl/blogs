@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}
+    {{ post.title }}
+{% endblock %}
+
+{% block body_content %}
+
+<section class="post-container">
+
+    <h2>{{ post.title }}</h2>
+
+    <!-- Tags -->
+    <div class="tags">
+        {% for tag in post.tags.all %}
+            <span class="tag">{{ tag }}</span>
+        {% endfor %}
+    </div>
+
+    <!-- Meta -->
+    <div class="post-meta">
+        <img src="{{ post.image.url }}" alt="{{ post.title }}">
+
+        <address>
+            By <a href="mailto:{{ post.author.email }}">{{ post.author }}</a>
+        </address>
+
+        <time>Posted on {{ post.date|date:"d M Y" }}</time>
+    </div>
+
+    <!-- Content -->
+    <main class="post-content">
+        <p>{{ post.content }}</p>
+    </main>
+
+</section>
+
+<!-- Comments Display -->
+<section class="comments">
+    <h2>Comments</h2>
+
+    <ul>
+        {% for comment in comments %}
+            <li class="comment">
+                <h3>{{ comment.comment_text }}</h3>
+                <p>{{ comment.user_name }}</p>
+            </li>
+        {% empty %}
+            <p>No comments yet.</p>
+        {% endfor %}
+    </ul>
+</section>
+
+<!-- Comment Form -->
+<section class="comment-form">
+    <h2>Leave a Comment</h2>
+
+    <form action="{% url 'blog-post' post.slug %}" method="POST">
+        {% csrf_token %}
+        {{ comment_form }}
+        <button type="submit">Post Comment</button>
+    </form>
+</section>
+
+{% endblock %}

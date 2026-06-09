@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil:wght@400;500;600;700&display=swap');
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Saira Stencil", sans-serif;
+    animation: pageZoom 1.5s ease forwards;
+    opacity: 0;
+    transform: scale(1.08);
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: white;
+    background: linear-gradient(135deg, #0f172a, #1e293b, #312e81);
+}
+
+/* =========================
+   CINEMATIC BACKGROUND
+========================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0.05;
+    animation: drift 20s linear infinite;
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    background: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.25), transparent 40%),
+                radial-gradient(circle at 80% 30%, rgba(99,102,241,0.25), transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(147,51,234,0.20), transparent 40%);
+    animation: bgMove 12s ease-in-out infinite alternate;
+    z-index: -2;
+}
+
+/* =========================
+   INTRO OVERLAY (ADD IN HTML)
+   <div class="intro-overlay"></div>
+========================= */
+
+.intro-overlay {
+    position: fixed;
+    inset: 0;
+    background: black;
+    z-index: 9999;
+    animation: introFade 2.2s ease forwards;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+
+    animation: slideDown 1s ease forwards;
+    transform: translateY(-20px);
+    opacity: 0;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: #60a5fa;
+}
+
+/* =========================
+   SECTION (MAIN CARD AREA)
+========================= */
+
+section {
+    width: 80%;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 25px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+
+    animation: floatUp 1.2s ease forwards;
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+
+    position: relative;
+}
+
+/* glow border */
+section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 25px;
+    padding: 1px;
+    background: linear-gradient(135deg, #60a5fa, transparent, #a855f7);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+}
+
+/* =========================
+   HEADING TYPEWRITER
+========================= */
+
+section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid white;
+
+    width: fit-content;
+    margin-inline: auto;
+
+    animation: typing 2.5s steps(30, end), blink 0.7s infinite;
+}
+
+/* =========================
+   LIST / CARDS
+========================= */
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 20px;
+
+    transition: 0.4s ease;
+    transform: perspective(1000px);
+
+    position: relative;
+}
+
+ul li:hover {
+    transform: perspective(1200px)
+        rotateX(6deg)
+        rotateY(-6deg)
+        translateY(-12px)
+        scale(1.04);
+
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+}
+
+/* link */
+ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+ul li a:hover {
+    color: #60a5fa;
+}
+
+/* =========================
+   FORM
+========================= */
+
+form {
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    animation: floatUp 1.3s ease forwards;
+}
+
+form input,
+form textarea,
+form select {
+    padding: 0.8rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+
+    background: rgba(255,255,255,0.06);
+    color: white;
+
+    outline: none;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    box-shadow: 0 0 20px rgba(96,165,250,0.4);
+    transform: scale(1.02);
+}
+
+form button {
+    padding: 0.9rem;
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: white;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+form button:hover {
+    transform: translateY(-3px);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes pageZoom {
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes floatUp {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes slideDown {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes introFade {
+    0% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes bgMove {
+    from { transform: rotate(0deg) scale(1); }
+    to { transform: rotate(8deg) scale(1.1); }
+}
+
+@keyframes drift {
+    from { transform: translateY(0); }
+    to { transform: translateY(-200px); }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+    section {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    section h2 {
+        font-size: 1.6rem;
+    }
+}

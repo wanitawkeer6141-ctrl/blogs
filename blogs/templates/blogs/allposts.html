@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'blogs/app.css' %}">
+{% endblock %}
+
+{% block page_title %}
+All Posts
+{% endblock %}
+
+{% block body_content %}
+
+<!-- Cinematic intro overlay -->
+<div class="intro-overlay"></div>
+
+<section>
+    <h2>All My Posts</h2>
+
+    <ul>
+        {% for blog in blogs %}
+            {% include 'blogs/includes/posts.html' with blog=blog %}
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock %}
