@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-z35k&kp9i5i1ddk5%ul-h(zeoknloa)iw+7#%6tt353f_p%1fd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*",'blogs-d49x.onrender.com',]
 
 print("MY SETTINGS FILE IS LOADED")
 
